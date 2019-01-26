@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
+import { WeatherService } from './weather.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'sunlite';
+    constructor(private service: WeatherService) {
+
+    }
+
 }
