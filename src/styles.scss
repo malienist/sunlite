@@ -78,6 +78,48 @@ header{
 .content{
     background: $blue;
 }
+.card{
+    @include boxshadow(0, 0, 10px, 0, 0, 0, 0.15);
+    @include radius(5px);
+    background: $blue;
+    color: $w;
+    display: block;
+    padding: 0 30px 15px;
+    overflow: hidden;
+
+    &:hover{
+        color: $w;
+    }
+    .title{
+        @include reg(16);
+        margin-left: -30px;
+        margin-right: -30px;
+        padding: 10px 30px;
+        background: $navy;
+        margin-bottom: 15px;
+        text-transform: capitalize;
+    }
+    .temp{
+        span{
+            position: relative;
+            padding-left: 55px;
+
+            &:before{
+                @include tl(50%, 0);
+                content: '';
+                width: 40px;
+                height: 40px;
+                margin-top: -20px;
+            }
+            @each $item in $conditions{
+                &.#{$item}:before{
+                    @include svg($item);
+                    background-size: 40px;
+                }
+            }
+        }
+    }
+}
 //responsive
 @media only screen and (min-width: 768px){
 

@@ -6,6 +6,7 @@ $navy: #48466d;
 $blue: #3d84a8;
 $teal: #46cdcf;
 $aqua: #abedd8;
+$conditions: mist, sunny, rainy;
 
 @mixin light($size){
     font: 300 #{$size}px 'Open Sans';

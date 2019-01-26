@@ -1,0 +1,6 @@
+<a [routerLink]="['/']" class="card">
+    <div class="title">{{ cardData.name }}</div>
+    <div class="temp">
+        <span [ngClass]="{cardData.weather[0].description: true}">{{ cardData.main.temp }}</span>
+    </div>
+</a>
