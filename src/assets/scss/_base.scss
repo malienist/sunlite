@@ -6,7 +6,7 @@ $navy: #48466d;
 $blue: #3d84a8;
 $teal: #46cdcf;
 $aqua: #abedd8;
-$conditions: mist, sunny, rainy;
+$border1: darken($teal, 10%);
 
 @mixin light($size){
     font: 300 #{$size}px 'Open Sans';
@@ -62,17 +62,26 @@ $conditions: mist, sunny, rainy;
     -moz-box-shadow: $a $b $c rgba($d, $e, $f, $g);
     box-shadow: $a $b $c rgba($d, $e, $f, $g);
 }
-@mixin basvg($svg, $width, $height, $bgSize){
+@mixin basvg($svg, $width, $height, $bgsize){
     background: url('assets/images/#{$svg}.svg') no-repeat;
     content: '';
+    width: $width;
+    height: $height;
+    background-size: $bgsize;
 }
-@mixin bajpg($jpg, $width, $height, $bgSize){
+@mixin bajpg($jpg, $width, $height, $bgsize){
     background: url('assets/images/#{$jpg}.jpg') no-repeat;
     content: '';
+    width: $width;
+    height: $height;
+    background-size: $bgsize;
 }
-@mixin bapng($png, $width, $height, $bgSize){
+@mixin bapng($png, $width, $height, $bgsize){
     background: url('assets/images/#{$png}.png') no-repeat;
     content: '';
+    width: $width;
+    height: $height;
+    background-size: $bgsize;
 }
 @mixin svg($svg){
     background: url('assets/images/#{$svg}.svg') no-repeat;

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service';
-import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'app-card',
@@ -9,15 +8,19 @@ import { map } from 'rxjs/operators';
 })
 export class CardComponent implements OnInit {
     cardData: Object;
+    cardLoaded: boolean;
 
     constructor(private service: WeatherService) { 
-        // this.cardData = new Object();
+        this.cardData = new Object();
     }
 
     ngOnInit() {
         this.service.query('kochi').subscribe(res => {
-            console.log(`card.component.init() - ${JSON.stringify(res)}`);
+            console.log(`card.component.init() => ${JSON.stringify(res)}`);
             this.cardData = res;
+            this.cardLoaded = true;
+        }, err => {
+            console.log(`Error => ${err.statusText}, Error code => ${err.status}`);
         });
     }
 }
