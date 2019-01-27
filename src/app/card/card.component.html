@@ -1,32 +1,34 @@
-<a *ngIf="cardLoaded; else nodata" class="card">
-    <div class="title">{{ cardData.name }}</div>
-    <div class="temp">
-        <span>
-            <img [src]="'http://openweathermap.org/img/w/'+ cardData.weather[0].icon + '.png'" alt="">
-            {{ cardData.main.temp }}
-        </span>
-        <div class="clearfix"></div>
-        <em>{{ cardData.weather[0].description }}</em>
+<ng-container>
+    <div *ngIf="cardLoaded">
+        <a class="card" [routerLink]="['/city', cardData.id]">
+            <div class="title">{{ cardData.id }}</div>
+            <div class="temp">
+                <span>
+                    <img [src]="'http://openweathermap.org/img/w/'+ cardData.weather[0].icon + '.png'" alt="">
+                    {{ strip(cardData.main.temp) }}
+                </span>
+                <div class="clearfix"></div>
+                <em>{{ cardData.weather[0].description }}</em>
+            </div>
+            <div class="humidity">
+                <i>humidity</i>
+                <span>{{ cardData.main.humidity }} <em>%</em></span>
+            </div>
+            <div class="humidity">
+                    <i>pressure</i>
+                    <span>{{ cardData.main.pressure }} <em>mb</em></span>
+                </div>
+            <div class="max-min">
+                <div class="max">
+                    <div class="title2"><span>highest</span></div>
+                    <div class="temp"><span>{{ strip(cardData.main.temp_max) }}</span></div>
+                </div>
+                <div class="min">
+                    <div class="title2"><span>lowest</span></div>
+                    <div class="temp"><span>{{ strip(cardData.main.temp_min) }}</span></div>
+                </div>
+            </div>
+        </a>
     </div>
-    <div class="humidity">
-        <i>humidity</i>
-        <span>{{ cardData.main.humidity }} <em>%</em></span>
-    </div>
-    <div class="humidity">
-            <i>pressure</i>
-            <span>{{ cardData.main.pressure }} <em>mb</em></span>
-        </div>
-    <div class="max-min">
-        <div class="max">
-            <div class="title2"><span>highest</span></div>
-            <div class="temp"><span>{{ cardData.main.temp_max }}</span></div>
-        </div>
-        <div class="min">
-            <div class="title2"><span>lowest</span></div>
-            <div class="temp"><span>{{ cardData.main.temp_min }}</span></div>
-        </div>
-    </div>
-</a>
-<ng-template #nodata>
-    <div class="no-data"><span>no weather report for this place available!</span></div>
-</ng-template>
+    <div *ngIf="nodata" class="no-data"><span>no weather report for this place available!</span></div>
+</ng-container>

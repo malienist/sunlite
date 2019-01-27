@@ -83,6 +83,11 @@ $border1: darken($teal, 10%);
     height: $height;
     background-size: $bgsize;
 }
+@mixin transform($t){
+    -webkit-transform: $t;
+    -moz-transform: $t;
+    transform: $t;
+}
 @mixin svg($svg){
     background: url('assets/images/#{$svg}.svg') no-repeat;
 }

@@ -3,25 +3,37 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 //routing
-import { AppRoutingModule } from './app-routing.module';
+import { Routes, RouterModule } from '@angular/router';
 //services
 import { WeatherService } from './weather.service';
 //components
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CardComponent } from './card/card.component';
+import { CardContainerComponent } from './card-container/card-container.component';
+import { CityComponent } from './city/city.component';
+import { HomeComponent } from './home/home.component';
+
+const routes: Routes = [
+    { path: '', redirectTo: 'home', pathMatch: 'full'},
+    { path: 'home', component: HomeComponent },
+    { path: 'city/:id', component: CityComponent }
+];
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
-        CardComponent
+        CardComponent,
+        CardContainerComponent,
+        CityComponent,
+        HomeComponent
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
         FormsModule,
-        AppRoutingModule,
+        RouterModule.forRoot(routes),
     ],
     providers: [
         WeatherService
