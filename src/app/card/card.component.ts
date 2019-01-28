@@ -17,16 +17,12 @@ export class CardComponent implements OnInit {
 
     ngOnInit() {
         this.service.query(this.location).subscribe(res => {
-            console.log(`card.component.init() => ${JSON.stringify(res)}`);
+            //console.log(`card.component.init() => ${JSON.stringify(res)}`);
             this.cardData = res;
             this.cardLoaded = true;
             this.nodata = false;
         }, err => {
-            console.log(`Error => ${err.statusText}, Error code => ${err.status}`);
+            console.log(`card.component.error => ${err.statusText}, Error code => ${err.status}`);
         });
-    }
-
-    strip(str: string): string {
-        return str.toString().substring(0, 2);
     }
 }

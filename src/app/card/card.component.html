@@ -1,11 +1,11 @@
 <ng-container>
     <div *ngIf="cardLoaded">
         <a class="card" [routerLink]="['/city', cardData.id]">
-            <div class="title">{{ cardData.id }}</div>
+            <div class="title">{{ cardData.name }}</div>
             <div class="temp">
                 <span>
                     <img [src]="'http://openweathermap.org/img/w/'+ cardData.weather[0].icon + '.png'" alt="">
-                    {{ strip(cardData.main.temp) }}
+                    {{ service.strip(cardData.main.temp) }}
                 </span>
                 <div class="clearfix"></div>
                 <em>{{ cardData.weather[0].description }}</em>
@@ -21,11 +21,11 @@
             <div class="max-min">
                 <div class="max">
                     <div class="title2"><span>highest</span></div>
-                    <div class="temp"><span>{{ strip(cardData.main.temp_max) }}</span></div>
+                    <div class="temp"><span>{{ service.strip(cardData.main.temp_max) }}</span></div>
                 </div>
                 <div class="min">
                     <div class="title2"><span>lowest</span></div>
-                    <div class="temp"><span>{{ strip(cardData.main.temp_min) }}</span></div>
+                    <div class="temp"><span>{{ service.strip(cardData.main.temp_min) }}</span></div>
                 </div>
             </div>
         </a>

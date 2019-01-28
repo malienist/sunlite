@@ -27,4 +27,27 @@ export class WeatherService {
             })
         );
     }
+
+    queryById(id: string): Observable<Object> {
+        let queryUrl = `${WeatherService.API_URL}?id=${id}&appid=${WeatherService.API_KEY}&units=${WeatherService.UNITS}`;
+        console.log(`weather.service.query().queryUrl = ${queryUrl}`);
+        return this.http.get(queryUrl).pipe(
+            map(data => {
+                return data
+            })
+        );
+    }
+
+    forecast(id: string): Observable<Object> {
+        let queryUrl = `${WeatherService.API_URL}?id=${id}&appid=${WeatherService.API_KEY}&units=${WeatherService.UNITS}`;
+        return this.http.get(queryUrl).pipe(
+            map(data => {
+                return data
+            })
+        );
+    }
+
+    strip(str: string): string {
+        return str.toString().substring(0, 2);
+    }
 }

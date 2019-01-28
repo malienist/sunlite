@@ -1,0 +1,41 @@
+<ng-container>
+    <div *ngIf="cardLoaded">
+        <div class="card">
+            <div class="title">{{ cardData.name }}</div>
+            <div class="temp">
+                <span>
+                    <img [src]="'http://openweathermap.org/img/w/'+ cardData.weather[0].icon + '.png'" alt="">
+                    {{ service.strip(cardData.main.temp) }}
+                </span>
+                <div class="clearfix"></div>
+                <em>{{ cardData.weather[0].description }}</em>
+            </div>
+            <ng-container>
+                <div  *ngIf="forecastLoaded" class="forecast">
+                    <ul>
+                        <li *ngFor="let instance of forecast.list">sdsdsd</li>
+                    </ul>
+                </div>
+            </ng-container>
+            <div class="humidity">
+                <i>humidity</i>
+                <span>{{ cardData.main.humidity }} <em>%</em></span>
+            </div>
+            <div class="humidity">
+                    <i>pressure</i>
+                    <span>{{ cardData.main.pressure }} <em>mb</em></span>
+                </div>
+            <div class="max-min">
+                <div class="max">
+                    <div class="title2"><span>highest</span></div>
+                    <div class="temp"><span>{{ service.strip(cardData.main.temp_max) }}</span></div>
+                </div>
+                <div class="min">
+                    <div class="title2"><span>lowest</span></div>
+                    <div class="temp"><span>{{ service.strip(cardData.main.temp_min) }}</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="nodata" class="no-data"><span>no weather report for this place available!</span></div>
+</ng-container>

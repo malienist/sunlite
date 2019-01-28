@@ -277,6 +277,16 @@ header{
         }
     }
 }
+.forecast{
+    ul{
+        li{
+            @include reg(14);
+            text-transform: uppercase;
+            padding: 10px 0;
+            text-align: center;
+        }
+    }
+}
 //responsive
 @media only screen and (min-width: 768px){
 
