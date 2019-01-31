@@ -13,7 +13,7 @@
             <ng-container>
                 <div  *ngIf="forecastLoaded" class="forecast">
                     <ul>
-                        <li *ngFor="let instance of forecast.list">sdsdsd</li>
+                        <li *ngFor="let instance of forecast.list">{{ instance.main.temp }}</li>
                     </ul>
                 </div>
             </ng-container>

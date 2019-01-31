@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
     providedIn: 'root'
 })
 export class WeatherService {
-    static API_URL = 'http://api.openweathermap.org/data/2.5/weather';
+    static API_URL = 'http://api.openweathermap.org/data/2.5/';
     static API_KEY = 'b6bc51f2affd7dcb8cbe7ff2b9a685f5';
     /* For temperature in Fahrenheit use units=imperial
     For temperature in Celsius use units=metric
@@ -19,8 +19,8 @@ export class WeatherService {
     }
 
     query(city: string): Observable<Object> {
-        let queryUrl = `${WeatherService.API_URL}?q=${city}&appid=${WeatherService.API_KEY}&units=${WeatherService.UNITS}`;
-        console.log(`weather.service.query().queryUrl = ${queryUrl}`);
+        let queryUrl = `${WeatherService.API_URL}weather?q=${city}&appid=${WeatherService.API_KEY}&units=${WeatherService.UNITS}`;
+        console.log(`weather.service.query = ${queryUrl}`);
         return this.http.get(queryUrl).pipe(
             map(data => {
                 return data
@@ -29,8 +29,8 @@ export class WeatherService {
     }
 
     queryById(id: string): Observable<Object> {
-        let queryUrl = `${WeatherService.API_URL}?id=${id}&appid=${WeatherService.API_KEY}&units=${WeatherService.UNITS}`;
-        console.log(`weather.service.query().queryUrl = ${queryUrl}`);
+        let queryUrl = `${WeatherService.API_URL}weather?id=${id}&appid=${WeatherService.API_KEY}&units=${WeatherService.UNITS}`;
+        console.log(`weather.service.queryUrl() = ${queryUrl}`);
         return this.http.get(queryUrl).pipe(
             map(data => {
                 return data
@@ -39,7 +39,8 @@ export class WeatherService {
     }
 
     forecast(id: string): Observable<Object> {
-        let queryUrl = `${WeatherService.API_URL}?id=${id}&appid=${WeatherService.API_KEY}&units=${WeatherService.UNITS}`;
+        let queryUrl = `${WeatherService.API_URL}/forecast?id=${id}&appid=${WeatherService.API_KEY}&units=${WeatherService.UNITS}`;
+        console.log(`weather.service.forecast() - ${queryUrl}`);
         return this.http.get(queryUrl).pipe(
             map(data => {
                 return data
@@ -48,6 +49,6 @@ export class WeatherService {
     }
 
     strip(str: string): string {
-        return str.toString().substring(0, 2);
+        return str.toString().substring(0, 1).indexOf('-') > -1 ? str.toString().substring(0, 3) : str.toString().substring(0, 2);
     }
 }
