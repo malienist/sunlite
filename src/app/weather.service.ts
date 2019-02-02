@@ -48,10 +48,9 @@ export class WeatherService {
         );
     }
 
-    //refactor code for single floating numbers
     strip(str: string): string {
-        return str.toString().substring(0, 1).indexOf('-') > -1 
-        ? str.toString().substring(0, 3) 
+        return str.toString().substring(0, 1).includes('-')
+        ? str.toString().split('.')[0]
         : str.toString().substring(0, 2);
     }
 }
