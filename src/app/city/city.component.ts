@@ -32,7 +32,7 @@ export class CityComponent implements OnInit {
         //retrieve forecast
         this.service.forecast(this.cityId).subscribe(res => {
             this.forecast = res;
-            console.log(`forecast data => ${res}`);
+            console.log(`forecast data => ${JSON.stringify(res, null, 2)}`);
             this.forecastLoaded = true;
         }, err => {
             console.log(`city.component.forecast.error => ${err.statusText}, Error code => ${err.status}`);
@@ -42,5 +42,12 @@ export class CityComponent implements OnInit {
     setSunTime(utc: number): string {
         let time = new Date(utc * 1000).toLocaleTimeString().split(':');
         return `${time[0]}:${time[1]}`;
+    }
+
+    setDate(str: string): string {
+        // let date = new Date(str);
+        console.log(str);
+        return ``;
+        // return `${date[0]}.${date[1]}`;
     }
 }

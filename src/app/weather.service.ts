@@ -49,8 +49,6 @@ export class WeatherService {
     }
 
     strip(str: string): string {
-        return str.toString().substring(0, 1).includes('-')
-        ? str.toString().split('.')[0]
-        : str.toString().substring(0, 2);
+        return str.toString().split('.')[0];
     }
 }
