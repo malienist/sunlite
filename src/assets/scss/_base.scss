@@ -57,6 +57,26 @@ $border1: darken($teal, 10%);
     -moz-border-radius: $size;
     border-radius: $size;
 }
+@mixin tl-radius($size){
+    -webkit-border-top-left-radius: $size;
+    -moz-border-top-left-radius: $size;
+    border-top-left-radius: $size;
+}
+@mixin tr-radius($size){
+    -webkit-border-top-right-radius: $size;
+    -moz-border-top-right-radius: $size;
+    border-top-right-radius: $size;
+}
+@mixin bl-radius($size){
+    -webkit-border-bottom-left-radius: $size;
+    -moz-border-bottom-left-radius: $size;
+    border-bottom-left-radius: $size;
+}
+@mixin br-radius($size){
+    -webkit-border-bottom-right-radius: $size;
+    -moz-border-bottom-right-radius: $size;
+    border-bottom-right-radius: $size;
+}
 @mixin boxshadow($a, $b, $c, $d, $e, $f, $g){
     -webkit-box-shadow: $a $b $c rgba($d, $e, $f, $g);
     -moz-box-shadow: $a $b $c rgba($d, $e, $f, $g);

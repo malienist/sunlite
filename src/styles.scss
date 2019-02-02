@@ -17,7 +17,7 @@ body{
         width: 80px;
         height: 80px;
         top: 100px;
-        left: 5px;
+        right: 5px;
     }
     &:after{
         @include transform(rotateY(180deg));
@@ -55,12 +55,13 @@ header{
         text-transform: uppercase;
         display: block;
 
-        img, span{
+        img{
             display: inline-block;
             vertical-align: middle;
-        }
-        img{
             margin-right: 15px;
+        }
+        span{
+            display: none;
         }
         &:hover, &:visited{
             color: $w;
@@ -130,6 +131,16 @@ header{
         margin-bottom: 15px;
         text-transform: uppercase;
         text-align: center;
+        position: relative;
+
+        a{
+            @include svg(back);
+            @include tl(0, 0);
+            background-size: 20px;
+            background-position: center;
+            width: 50px;
+            height: 100%;
+        }
     }
     .temp{
         text-align: center;
@@ -138,18 +149,22 @@ header{
         margin-bottom: 30px;
 
         img{
-            margin-right: -15px;
+            display: none;
         }
         span{
-            @include light(65);
+            @include light(50);
             position: relative;
             padding: 0 25px 0 0;
             display: inline-block;
             color: $w;
-
+            
+            strong{
+                font-weight: 300;
+            }
             &:after{
                 @include basvg(celsius, 20px, 20px, 20px);
-                @include tr(22px, 0);
+                @include tr(50%, 0);
+                margin-top: -10px;
             }
         }
         em{
@@ -181,13 +196,14 @@ header{
             letter-spacing: 1px;
         }
         span{
-            @include light(65);
+            @include light(30);
             position: relative;
-            padding-right: 35px;
+            padding-right: 30px;
 
             em{
                 @include light(22);
-                @include tr(16px, 0);
+                @include tr(50%, 0);
+                margin-top: -14px;
                 font-style: normal;
             }
         }
@@ -198,28 +214,15 @@ header{
         text-transform: uppercase;
         letter-spacing: 1px;
         margin-bottom: 15px;
-
-        span{
-            position: relative;
-            padding-right: 30px;
-
-            &:after{
-                @include tr(50%, 0);
-                width: 24px;
-                height: 24px;
-                content: '';
-                margin-top: -12px;
-            }
-        }
     }
     .max-min{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        padding: 0 30px 30px;
         border-bottom: 1px solid $border1;
         text-align: center;
+        padding-bottom: 40px;
 
         .temp{
             border: none;
@@ -235,6 +238,8 @@ header{
             }
         }
         .max{
+            margin-bottom: 30px;
+
             .title2 span:after{
                 @include svg(max);
                 background-size: 24px;
@@ -287,7 +292,123 @@ header{
         }
     }
 }
+.search-container{
+    position: relative;
+    padding: 20px 15px 30px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    span{
+        @include bl(-2px, 15px);
+        @include reg(14);
+        display: block;
+        color: #fff;
+        padding-left: 28px;
+        white-space: nowrap;
+
+        &:before{
+            @include tl(50%, 0);
+            margin-top: -8px;
+        }
+        &.error{
+            &:before{
+                @include basvg(error, 16px, 16px, 16px);
+            }
+        }
+        &.fetch{
+            &:before{
+                @include basvg(fetch, 16px, 16px, 16px);
+            }
+        }
+    }
+    input[type="text"]{
+        @include tl-radius(30px);
+        @include bl-radius(30px);
+        @include reg(14);
+        width: calc(100% - 100px);
+        height: 36px;
+        text-transform: uppercase;
+        background: $t;
+        border: 1px solid #f5f5f5;
+        border-right: none;
+        padding-left: 20px;
+    }
+    [placeholder]{
+        color: $w;
+    }
+    button{
+        @include reg(18);
+        @include tr-radius(30px);
+        @include br-radius(30px);
+        width: 100px;
+        height: 36px;
+        line-height: 34px;
+        border: 1px solid $w;
+        background: $navy;
+        color: $w;
+        text-transform: uppercase;
+    }
+}
 //responsive
+@media only screen and (min-width: 480px){
+    .search-container{
+        input[type="text"]{
+            width: 400px;
+        }
+        button{
+            width: 150px;
+        }
+    }
+    header{
+        a{
+            span{
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+    }
+    .card{
+        .temp{
+            img{
+                display: inline-block;
+                margin-right: 5px;
+            }
+            span{
+                font-size: 65px;
+            }
+        }
+        .humidity{
+            span{
+                font-size: 60px;
+            }
+        }
+        .max-min{
+            padding: 0 30px 30px;
+            flex-direction: row;
+
+            .max{
+                margin-bottom: 0;
+            }
+        }
+        .title2{
+            span{
+                position: relative;
+                padding-right: 30px;
+    
+                &:after{
+                    @include tr(50%, 0);
+                    width: 24px;
+                    height: 24px;
+                    content: '';
+                    margin-top: -12px;
+                }
+            }
+        }
+    }
+}
 @media only screen and (min-width: 768px){
 
 }
@@ -333,6 +454,21 @@ header{
             .temp em{
                 background: lighten($teal, 10%);
             }
+        }
+    }
+    .search-container{
+        margin-bottom: 0;
+        padding-bottom: 20px;
+
+        span{
+            bottom: auto;
+            left: auto;
+            position: relative;
+            margin-left: 15px;
+        }
+        button:hover{
+            background: $t;
+            border-color: $w;
         }
     }
 }

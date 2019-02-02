@@ -1,7 +1,10 @@
 <ng-container>
     <div *ngIf="cardLoaded">
         <div class="card">
-            <div class="title">{{ cardData.name }}</div>
+            <div class="title">
+                <a [routerLink]="['/home']"></a>
+                {{ cardData.name }}
+            </div>
             <div class="temp">
                 <span>
                     <img [src]="'http://openweathermap.org/img/w/'+ cardData.weather[0].icon + '.png'" alt="">
@@ -12,9 +15,9 @@
             </div>
             <ng-container>
                 <div  *ngIf="forecastLoaded" class="forecast">
-                    <ul>
+                    <!-- <ul>
                         <li *ngFor="let instance of forecast.list">{{ instance.main.temp }}</li>
-                    </ul>
+                    </ul> -->
                 </div>
             </ng-container>
             <div class="humidity">

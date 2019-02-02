@@ -13,6 +13,7 @@ import { CardComponent } from './card/card.component';
 import { CardContainerComponent } from './card-container/card-container.component';
 import { CityComponent } from './city/city.component';
 import { HomeComponent } from './home/home.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -28,7 +29,8 @@ const routes: Routes = [
         CardComponent,
         CardContainerComponent,
         CityComponent,
-        HomeComponent
+        HomeComponent,
+        SearchComponent
     ],
     imports: [
         BrowserModule,

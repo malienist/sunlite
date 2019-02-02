@@ -14,8 +14,8 @@ export class CityComponent implements OnInit {
     forecast: Object;
     forecastLoaded: boolean = false;
 
-    constructor(private route: ActivatedRoute, private service: WeatherService) { 
-        this.route.params.subscribe(params => this.cityId = params['id']);
+    constructor(private activatedRoute: ActivatedRoute, private service: WeatherService) { 
+        this.activatedRoute.params.subscribe(params => this.cityId = params['id']);
         console.log('city.component.constructor() - ', `city/${this.cityId}`);
     }
 

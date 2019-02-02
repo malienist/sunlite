@@ -5,7 +5,7 @@
             <div class="temp">
                 <span>
                     <img [src]="'http://openweathermap.org/img/w/'+ cardData.weather[0].icon + '.png'" alt="">
-                    {{ service.strip(cardData.main.temp) }}
+                    <strong>{{ service.strip(cardData.main.temp) }}</strong>
                 </span>
                 <div class="clearfix"></div>
                 <em>{{ cardData.weather[0].description }}</em>
