@@ -132,12 +132,14 @@ header{
         text-transform: uppercase;
         text-align: center;
         position: relative;
+        overflow: hidden;
 
         a{
             @include svg(back);
             @include tl(0, 0);
             background-size: 20px;
             background-position: center;
+            background-color: lighten($navy, 15%);
             width: 50px;
             height: 100%;
         }
@@ -235,6 +237,17 @@ header{
                 &:after{
                     top: 13px;
                 }
+                i{
+                    @include light(18);
+                    font-style: normal;
+                }
+            }
+            &.no-after{
+                padding-right: 0;
+
+                span:after{
+                    display: none;
+                }
             }
         }
         .max{
@@ -246,9 +259,33 @@ header{
             }
         }
         .min{
-            .title2 span:after{
-                @include svg(min);
-                background-size: 24px;
+            .title2{
+                span{
+                    &:after{
+                        @include svg(min);
+                        background-size: 24px;
+                    }
+                    &.wind-speed:after{
+                        @include svg(wind-speed);
+                        background-size: 24px;
+                    }
+                    &.wind-deg:after{
+                        @include svg(wind-deg);
+                        background-size: 24px;
+                    }
+                    &.latitude:after{
+                        @include svg(latitude);
+                        background-size: 24px;
+                    }
+                    &.longitude:after{
+                        @include svg(longitude);
+                        background-size: 24px;
+                    }
+                    &.sunrise:after{
+                        @include svg(sunrise);
+                        background-size: 24px;
+                    }
+                }
             }
         }
     }
@@ -352,6 +389,10 @@ header{
         text-transform: uppercase;
     }
 }
+.city-flex{
+    display: flex;
+    flex-direction: column;
+}
 //responsive
 @media only screen and (min-width: 480px){
     .search-container{
@@ -382,7 +423,7 @@ header{
         }
         .humidity{
             span{
-                font-size: 60px;
+                font-size: 40px;
             }
         }
         .max-min{
@@ -456,6 +497,34 @@ header{
             }
         }
     }
+    .card{
+        .title{
+            a:hover{
+                background-color: $navy;
+            }
+        }
+        .max-min{
+            &.inverse{
+                width: 60%;
+                padding-left: 0;
+                padding-right: 0;
+                justify-content: space-between;
+                padding-bottom: 55px;
+                margin-bottom: 55px;
+
+                .min{
+                    margin-left: 90px;
+                }
+            }
+            &.coordinates{
+                .min{
+                    &:first-child{
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+    }
     .search-container{
         margin-bottom: 0;
         padding-bottom: 20px;
@@ -469,6 +538,22 @@ header{
         button:hover{
             background: $t;
             border-color: $w;
+        }
+    }
+    .city-flex{
+        width: 60%;
+        margin-bottom: 60px;
+        flex-direction: row;
+        padding-right: 25px;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid $border1;
+
+        .temp, .humidity{
+            border: none;
+        }
+        .humidity{
+            margin-left: 55px;
         }
     }
 }

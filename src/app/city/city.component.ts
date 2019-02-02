@@ -13,6 +13,7 @@ export class CityComponent implements OnInit {
     nodata: boolean;
     forecast: Object;
     forecastLoaded: boolean = false;
+    sunrise: string;
 
     constructor(private activatedRoute: ActivatedRoute, private service: WeatherService) { 
         this.activatedRoute.params.subscribe(params => this.cityId = params['id']);
@@ -37,5 +38,9 @@ export class CityComponent implements OnInit {
             console.log(`city.component.forecast.error => ${err.statusText}, Error code => ${err.status}`);
         });
     }
-
+    
+    setSunTime(utc: number): string {
+        let time = new Date(utc * 1000).toLocaleTimeString().split(':');
+        return `${time[0]}:${time[1]}`;
+    }
 }

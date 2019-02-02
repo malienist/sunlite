@@ -9,19 +9,25 @@ import { WeatherService } from '../weather.service';
 })
 export class SearchComponent implements OnInit {
     error: boolean;
+    fetch: boolean;
 
     constructor(private service: WeatherService, private router: Router) { 
         this.error = false;
+        this.fetch = false;
     }
 
     ngOnInit() {
     }
     
     searchInfo(city: string){
+        this.error = false;
+        this.fetch = true;
         this.service.query(city).subscribe(res => {
-            let id = res.id;
-            this.router.navigate(['/city', id]);
+            setTimeout(() => {
+                this.router.navigate(['/city', res.id]);
+            }, 1500);
         }, (err) => {
+            this.fetch = false;
             this.error = true;
         });
     }

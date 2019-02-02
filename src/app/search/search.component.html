@@ -2,5 +2,5 @@
     <input type="text" #search placeholder="Search..." (keydown.enter)="searchInfo(search.value)">
     <button (click)="searchInfo(search.value)">Search</button>
     <span *ngIf="error" class="error">Location not found! Try another location.</span>
-    <!-- <span *ngIf="fetch" class="fetch">Fetching...</span> -->
+    <span *ngIf="fetch" class="fetch">Fetching location information...</span>
 </div>
