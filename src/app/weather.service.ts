@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
     providedIn: 'root'
 })
 export class WeatherService {
-    static API_URL = 'http://api.openweathermap.org/data/2.5/';
+    static API_URL = 'https://api.openweathermap.org/data/2.5/';
     static API_KEY = 'b6bc51f2affd7dcb8cbe7ff2b9a685f5';
     /* For temperature in Fahrenheit use units=imperial
     For temperature in Celsius use units=metric
