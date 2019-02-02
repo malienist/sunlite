@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { WeatherService } from '../weather.service';
+import { WeatherInfo } from '../weather-info';
 
 @Component({
     selector: 'app-search',
@@ -23,8 +24,9 @@ export class SearchComponent implements OnInit {
         this.error = false;
         this.fetch = true;
         this.service.query(city).subscribe(res => {
+            let response = <WeatherInfo>res;
             setTimeout(() => {
-                this.router.navigate(['/city', res.id]);
+                this.router.navigate(['/city', response.id]);
             }, 1500);
         }, (err) => {
             this.fetch = false;

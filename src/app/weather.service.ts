@@ -41,7 +41,7 @@ export class WeatherService {
     forecast(id: string): Observable<Object> {
         let queryUrl = `${WeatherService.API_URL}/forecast?id=${id}&appid=${WeatherService.API_KEY}&units=${WeatherService.UNITS}`;
         console.log(`weather.service.forecast() - ${queryUrl}`);
-        return this.http.get(queryUrl).pipe(
+        return this.http.get<Object>(queryUrl).pipe(
             map(data => {
                 return data
             })
