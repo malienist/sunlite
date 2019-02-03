@@ -10,7 +10,7 @@ export class CardContainerComponent implements OnInit {
 
     constructor() { 
         this.location = [
-            'chicago', 'delhi', 'manali', 'aluva', 'norway'
+            'mangalore', 'aluva', 'delhi', 'chicago', 'norway'
         ];
     }
 

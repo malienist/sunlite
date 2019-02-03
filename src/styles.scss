@@ -251,9 +251,6 @@ header{
             span{
                 font-size: 40px;
 
-                &:after{
-                    top: 13px;
-                }
                 i{
                     @include light(18);
                     font-style: normal;
