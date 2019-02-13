@@ -218,6 +218,7 @@ header{
             @include light(30);
             position: relative;
             padding-right: 30px;
+            display: inline-block;
 
             em{
                 @include light(22);
@@ -375,6 +376,8 @@ header{
         div:not(.degree-title){
             width: calc(100% / 3);
             background: rgba(72, 70, 109, 0.25);
+            padding-left: 15px;
+            padding-right: 15px;
         }
         .degree-title{
             @include light(14);
