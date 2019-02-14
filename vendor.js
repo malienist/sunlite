@@ -46533,6 +46533,362 @@ var ɵEmptyOutletComponentNgFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__
 
 /***/ }),
 
+/***/ "./node_modules/ng2-slim-loading-bar/index.js":
+/*!****************************************************!*\
+  !*** ./node_modules/ng2-slim-loading-bar/index.js ***!
+  \****************************************************/
+/*! exports provided: SlimLoadingBarModule, SlimLoadingBarComponent, SlimLoadingBarEventType, SlimLoadingBarEvent, SlimLoadingBarService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SlimLoadingBarModule", function() { return SlimLoadingBarModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _src_slim_loading_bar_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./src/slim-loading-bar.component */ "./node_modules/ng2-slim-loading-bar/src/slim-loading-bar.component.js");
+/* harmony import */ var _src_slim_loading_bar_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./src/slim-loading-bar.service */ "./node_modules/ng2-slim-loading-bar/src/slim-loading-bar.service.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SlimLoadingBarComponent", function() { return _src_slim_loading_bar_component__WEBPACK_IMPORTED_MODULE_1__["SlimLoadingBarComponent"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SlimLoadingBarEventType", function() { return _src_slim_loading_bar_service__WEBPACK_IMPORTED_MODULE_2__["SlimLoadingBarEventType"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SlimLoadingBarEvent", function() { return _src_slim_loading_bar_service__WEBPACK_IMPORTED_MODULE_2__["SlimLoadingBarEvent"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SlimLoadingBarService", function() { return _src_slim_loading_bar_service__WEBPACK_IMPORTED_MODULE_2__["SlimLoadingBarService"]; });
+
+// Copyright (C) 2016 Sergey Akopkokhyants
+// This project is licensed under the terms of the MIT license.
+// https://github.com/akserg/ng2-slim-loading-bar
+
+
+
+
+
+var SlimLoadingBarModule = (function () {
+    function SlimLoadingBarModule() {
+    }
+    SlimLoadingBarModule.forRoot = function () {
+        return {
+            ngModule: SlimLoadingBarModule,
+            providers: [_src_slim_loading_bar_service__WEBPACK_IMPORTED_MODULE_2__["SlimLoadingBarService"]]
+        };
+    };
+    SlimLoadingBarModule.decorators = [
+        { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"], args: [{
+                    declarations: [_src_slim_loading_bar_component__WEBPACK_IMPORTED_MODULE_1__["SlimLoadingBarComponent"]],
+                    exports: [_src_slim_loading_bar_component__WEBPACK_IMPORTED_MODULE_1__["SlimLoadingBarComponent"]],
+                    providers: [_src_slim_loading_bar_service__WEBPACK_IMPORTED_MODULE_2__["SlimLoadingBarService"]]
+                },] },
+    ];
+    /** @nocollapse */
+    SlimLoadingBarModule.ctorParameters = function () { return []; };
+    return SlimLoadingBarModule;
+}());
+
+
+/***/ }),
+
+/***/ "./node_modules/ng2-slim-loading-bar/src/slim-loading-bar.component.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/ng2-slim-loading-bar/src/slim-loading-bar.component.js ***!
+  \*****************************************************************************/
+/*! exports provided: SlimLoadingBarComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SlimLoadingBarComponent", function() { return SlimLoadingBarComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _slim_loading_bar_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slim-loading-bar.service */ "./node_modules/ng2-slim-loading-bar/src/slim-loading-bar.service.js");
+/* harmony import */ var _slim_loading_bar_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./slim-loading-bar.utils */ "./node_modules/ng2-slim-loading-bar/src/slim-loading-bar.utils.js");
+// Copyright (C) 2016 Sergey Akopkokhyants
+// This project is licensed under the terms of the MIT license.
+// https://github.com/akserg/ng2-slim-loading-bar
+
+
+
+/**
+ * A Slim Loading Bar component shows message loading progress bar on the top of web page or parent component.
+ */
+var SlimLoadingBarComponent = (function () {
+    function SlimLoadingBarComponent(service) {
+        this.service = service;
+        this.progress = '0';
+        this.color = 'firebrick';
+        this.height = '2px';
+        this.show = true;
+    }
+    SlimLoadingBarComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.service.events.subscribe(function (event) {
+            if (event.type === _slim_loading_bar_service__WEBPACK_IMPORTED_MODULE_1__["SlimLoadingBarEventType"].PROGRESS && Object(_slim_loading_bar_utils__WEBPACK_IMPORTED_MODULE_2__["isPresent"])(event.value)) {
+                _this.progress = event.value;
+            }
+            else if (event.type === _slim_loading_bar_service__WEBPACK_IMPORTED_MODULE_1__["SlimLoadingBarEventType"].COLOR) {
+                _this.color = event.value;
+            }
+            else if (event.type === _slim_loading_bar_service__WEBPACK_IMPORTED_MODULE_1__["SlimLoadingBarEventType"].HEIGHT) {
+                _this.height = event.value;
+            }
+            else if (event.type === _slim_loading_bar_service__WEBPACK_IMPORTED_MODULE_1__["SlimLoadingBarEventType"].VISIBLE) {
+                _this.show = event.value;
+            }
+        });
+    };
+    SlimLoadingBarComponent.decorators = [
+        { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"], args: [{
+                    selector: 'ng2-slim-loading-bar',
+                    template: "\n<div class=\"slim-loading-bar\">\n    <div class=\"slim-loading-bar-progress\" [style.width]=\"progress + '%'\" [style.backgroundColor]=\"color\" [style.color]=\"color\"\n        [style.height]=\"height\" [style.opacity]=\"show ? '1' : '0'\"></div>\n</div>"
+                },] },
+    ];
+    /** @nocollapse */
+    SlimLoadingBarComponent.ctorParameters = function () { return [
+        { type: _slim_loading_bar_service__WEBPACK_IMPORTED_MODULE_1__["SlimLoadingBarService"], },
+    ]; };
+    SlimLoadingBarComponent.propDecorators = {
+        'progress': [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"] },],
+        'color': [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"] },],
+        'height': [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"] },],
+        'show': [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"] },],
+    };
+    return SlimLoadingBarComponent;
+}());
+
+
+/***/ }),
+
+/***/ "./node_modules/ng2-slim-loading-bar/src/slim-loading-bar.component.ngfactory.js":
+/*!***************************************************************************************!*\
+  !*** ./node_modules/ng2-slim-loading-bar/src/slim-loading-bar.component.ngfactory.js ***!
+  \***************************************************************************************/
+/*! exports provided: RenderType_SlimLoadingBarComponent, View_SlimLoadingBarComponent_0, View_SlimLoadingBarComponent_Host_0, SlimLoadingBarComponentNgFactory */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RenderType_SlimLoadingBarComponent", function() { return RenderType_SlimLoadingBarComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "View_SlimLoadingBarComponent_0", function() { return View_SlimLoadingBarComponent_0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "View_SlimLoadingBarComponent_Host_0", function() { return View_SlimLoadingBarComponent_Host_0; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SlimLoadingBarComponentNgFactory", function() { return SlimLoadingBarComponentNgFactory; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _slim_loading_bar_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slim-loading-bar.component */ "./node_modules/ng2-slim-loading-bar/src/slim-loading-bar.component.js");
+/* harmony import */ var _slim_loading_bar_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./slim-loading-bar.service */ "./node_modules/ng2-slim-loading-bar/src/slim-loading-bar.service.js");
+/**
+ * @fileoverview This file was generated by the Angular template compiler. Do not edit.
+ *
+ * @suppress {suspiciousCode,uselessCode,missingProperties,missingOverride,checkTypes}
+ * tslint:disable
+ */ 
+
+
+
+var styles_SlimLoadingBarComponent = [];
+var RenderType_SlimLoadingBarComponent = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵcrt"]({ encapsulation: 2, styles: styles_SlimLoadingBarComponent, data: {} });
+
+function View_SlimLoadingBarComponent_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "div", [["class", "slim-loading-bar"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](1, 0, null, null, 0, "div", [["class", "slim-loading-bar-progress"]], [[4, "width", null], [4, "backgroundColor", null], [4, "color", null], [4, "height", null], [4, "opacity", null]], null, null, null, null))], null, function (_ck, _v) { var _co = _v.component; var currVal_0 = (_co.progress + "%"); var currVal_1 = _co.color; var currVal_2 = _co.color; var currVal_3 = _co.height; var currVal_4 = (_co.show ? "1" : "0"); _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4); }); }
+function View_SlimLoadingBarComponent_Host_0(_l) { return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵeld"](0, 0, null, null, 1, "ng2-slim-loading-bar", [], null, null, null, View_SlimLoadingBarComponent_0, RenderType_SlimLoadingBarComponent)), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵdid"](1, 114688, null, 0, _slim_loading_bar_component__WEBPACK_IMPORTED_MODULE_1__["SlimLoadingBarComponent"], [_slim_loading_bar_service__WEBPACK_IMPORTED_MODULE_2__["SlimLoadingBarService"]], null, null)], function (_ck, _v) { _ck(_v, 1, 0); }, null); }
+var SlimLoadingBarComponentNgFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵccf"]("ng2-slim-loading-bar", _slim_loading_bar_component__WEBPACK_IMPORTED_MODULE_1__["SlimLoadingBarComponent"], View_SlimLoadingBarComponent_Host_0, { progress: "progress", color: "color", height: "height", show: "show" }, {}, []);
+
+
+
+/***/ }),
+
+/***/ "./node_modules/ng2-slim-loading-bar/src/slim-loading-bar.service.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/ng2-slim-loading-bar/src/slim-loading-bar.service.js ***!
+  \***************************************************************************/
+/*! exports provided: SlimLoadingBarEventType, SlimLoadingBarEvent, SlimLoadingBarService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SlimLoadingBarEventType", function() { return SlimLoadingBarEventType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SlimLoadingBarEvent", function() { return SlimLoadingBarEvent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SlimLoadingBarService", function() { return SlimLoadingBarService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _slim_loading_bar_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slim-loading-bar.utils */ "./node_modules/ng2-slim-loading-bar/src/slim-loading-bar.utils.js");
+/* harmony import */ var rxjs_Subject__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/Subject */ "./node_modules/rxjs-compat/_esm5/Subject.js");
+// Copyright (C) 2016 Sergey Akopkokhyants
+// This project is licensed under the terms of the MIT license.
+// https://github.com/akserg/ng2-slim-loading-bar
+
+
+
+var SlimLoadingBarEventType;
+(function (SlimLoadingBarEventType) {
+    SlimLoadingBarEventType[SlimLoadingBarEventType["PROGRESS"] = 0] = "PROGRESS";
+    SlimLoadingBarEventType[SlimLoadingBarEventType["HEIGHT"] = 1] = "HEIGHT";
+    SlimLoadingBarEventType[SlimLoadingBarEventType["COLOR"] = 2] = "COLOR";
+    SlimLoadingBarEventType[SlimLoadingBarEventType["VISIBLE"] = 3] = "VISIBLE";
+})(SlimLoadingBarEventType || (SlimLoadingBarEventType = {}));
+var SlimLoadingBarEvent = (function () {
+    function SlimLoadingBarEvent(type, value) {
+        this.type = type;
+        this.value = value;
+    }
+    return SlimLoadingBarEvent;
+}());
+/**
+ * SlimLoadingBar service helps manage Slim Loading bar on the top of screen or parent component
+ */
+var SlimLoadingBarService = (function () {
+    function SlimLoadingBarService() {
+        this._progress = 0;
+        this._height = '2px';
+        this._color = 'firebrick';
+        this._visible = true;
+        this._intervalCounterId = 0;
+        this.interval = 500; // in milliseconds
+        this.eventSource = new rxjs_Subject__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        this.events = this.eventSource.asObservable();
+    }
+    Object.defineProperty(SlimLoadingBarService.prototype, "progress", {
+        get: function () {
+            return this._progress;
+        },
+        set: function (value) {
+            if (Object(_slim_loading_bar_utils__WEBPACK_IMPORTED_MODULE_1__["isPresent"])(value)) {
+                if (value > 0) {
+                    this.visible = true;
+                }
+                this._progress = value;
+                this.emitEvent(new SlimLoadingBarEvent(SlimLoadingBarEventType.PROGRESS, this._progress));
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SlimLoadingBarService.prototype, "height", {
+        get: function () {
+            return this._height;
+        },
+        set: function (value) {
+            if (Object(_slim_loading_bar_utils__WEBPACK_IMPORTED_MODULE_1__["isPresent"])(value)) {
+                this._height = value;
+                this.emitEvent(new SlimLoadingBarEvent(SlimLoadingBarEventType.HEIGHT, this._height));
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SlimLoadingBarService.prototype, "color", {
+        get: function () {
+            return this._color;
+        },
+        set: function (value) {
+            if (Object(_slim_loading_bar_utils__WEBPACK_IMPORTED_MODULE_1__["isPresent"])(value)) {
+                this._color = value;
+                this.emitEvent(new SlimLoadingBarEvent(SlimLoadingBarEventType.COLOR, this._color));
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SlimLoadingBarService.prototype, "visible", {
+        get: function () {
+            return this._visible;
+        },
+        set: function (value) {
+            if (Object(_slim_loading_bar_utils__WEBPACK_IMPORTED_MODULE_1__["isPresent"])(value)) {
+                this._visible = value;
+                this.emitEvent(new SlimLoadingBarEvent(SlimLoadingBarEventType.VISIBLE, this._visible));
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    SlimLoadingBarService.prototype.emitEvent = function (event) {
+        if (this.eventSource) {
+            // Push up a new event
+            this.eventSource.next(event);
+        }
+    };
+    SlimLoadingBarService.prototype.start = function (onCompleted) {
+        var _this = this;
+        if (onCompleted === void 0) { onCompleted = null; }
+        // Stop current timer
+        this.stop();
+        // Make it visible for sure
+        this.visible = true;
+        // Run the timer with milliseconds iterval
+        this._intervalCounterId = setInterval(function () {
+            // Increment the progress and update view component
+            _this.progress++;
+            // If the progress is 100% - call complete
+            if (_this.progress === 100) {
+                _this.complete();
+            }
+        }, this.interval);
+    };
+    SlimLoadingBarService.prototype.stop = function () {
+        if (this._intervalCounterId) {
+            clearInterval(this._intervalCounterId);
+            this._intervalCounterId = null;
+        }
+    };
+    SlimLoadingBarService.prototype.reset = function () {
+        this.stop();
+        this.progress = 0;
+    };
+    SlimLoadingBarService.prototype.complete = function () {
+        var _this = this;
+        this.progress = 100;
+        this.stop();
+        setTimeout(function () {
+            // Hide it away
+            _this.visible = false;
+            setTimeout(function () {
+                // Drop to 0
+                _this.progress = 0;
+            }, 250);
+        }, 250);
+    };
+    SlimLoadingBarService.decorators = [
+        { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"] },
+    ];
+    /** @nocollapse */
+    SlimLoadingBarService.ctorParameters = function () { return []; };
+    return SlimLoadingBarService;
+}());
+
+
+/***/ }),
+
+/***/ "./node_modules/ng2-slim-loading-bar/src/slim-loading-bar.utils.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/ng2-slim-loading-bar/src/slim-loading-bar.utils.js ***!
+  \*************************************************************************/
+/*! exports provided: isPresent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isPresent", function() { return isPresent; });
+/**
+ * Check and return true if an object not undefined or null
+ */
+function isPresent(obj) {
+    return obj !== undefined && obj !== null;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/rxjs-compat/_esm5/Subject.js":
+/*!***************************************************!*\
+  !*** ./node_modules/rxjs-compat/_esm5/Subject.js ***!
+  \***************************************************/
+/*! exports provided: Subject */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Subject", function() { return rxjs__WEBPACK_IMPORTED_MODULE_0__["Subject"]; });
+
+
+//# sourceMappingURL=Subject.js.map
+
+/***/ }),
+
 /***/ "./node_modules/rxjs/_esm5/index.js":
 /*!******************************************!*\
   !*** ./node_modules/rxjs/_esm5/index.js ***!
