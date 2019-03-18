@@ -602,6 +602,9 @@ header{
     }
 }
 @media only screen and (min-width: 1200px){
+    .pad{
+        padding: 130px 70px 50px !important;
+    }
     a, button, input[type="submit"]{
         @include transition;
     }
@@ -614,6 +617,9 @@ header{
         }
     }
     header{
+        padding-left: 80px;
+        padding-right: 80px;
+
         a{
             letter-spacing: 3px;
         }
