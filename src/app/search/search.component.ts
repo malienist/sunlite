@@ -25,12 +25,11 @@ export class SearchComponent implements OnInit {
         this.fetch = true;
         this.service.query(city).subscribe(res => {
             let response = <WeatherInfo>res;
-            setTimeout(() => {
-                this.router.navigate(['/city', response.id]);
-            }, 1500);
+            this.router.navigate(['/city', response.id]);
         }, (err) => {
             this.fetch = false;
             this.error = true;
+            console.log(`search.component.searchInfo() - error received - ${err}`);
         });
     }
 }
